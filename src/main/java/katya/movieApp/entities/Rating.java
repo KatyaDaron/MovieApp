@@ -2,6 +2,7 @@ package katya.movieApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import katya.movieApp.dtos.RatingDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,4 +32,13 @@ public class Rating {
     @ManyToOne
     @JsonBackReference
     private Movie movie;
+
+    public Rating(RatingDto ratingDto) {
+        if (ratingDto.getRatingValue() != null) {
+            this.ratingValue = ratingDto.getRatingValue();
+        }
+        if (ratingDto.getComment() != null) {
+            this.comment = ratingDto.getComment();
+        }
+    }
 }

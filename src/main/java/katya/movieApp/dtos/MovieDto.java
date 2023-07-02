@@ -15,6 +15,7 @@ public class MovieDto {
     private Long id;
     private String title;
     private int duration;
+    private String director;
     private String genre;
     private String maturityRating;
     private String description;
@@ -30,6 +31,9 @@ public class MovieDto {
         }
         if (movie.getDuration() != 0) {
             this.duration = movie.getDuration();
+        }
+        if (movie.getDirector() != null) {
+            this.director = movie.getDirector();
         }
         if (movie.getGenre() != null) {
             this.genre = movie.getGenre();
