@@ -21,4 +21,10 @@ public interface MovieService {
     //Deleting a movie from user's account
     @Transactional
     void deleteMovieFromUser(Long movieId, Long userId);
+
+    //Displaying detailed information about a specific movie
+    MovieDto getMovieById(Long movieId);
+
+    //Finding a movie by any character or word in the title
+    List<MovieDto> findMoviesByTitle(String searchQuery);
 }

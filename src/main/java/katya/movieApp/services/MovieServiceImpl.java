@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -57,5 +58,25 @@ public class MovieServiceImpl implements MovieService {
             User user = userOptional.get();
             user.getMovies().removeIf(movie -> movie.getId().equals(movieId));
         }
+    }
+
+    //Displaying detailed information about a specific movie
+    @Override
+    public MovieDto getMovieById(Long movieId) {
+        Optional<Movie> movieOptional = movieRepository.findById(movieId);
+        if (movieOptional.isPresent()) {
+            Movie movie = movieOptional.get();
+            return new MovieDto(movie);
+        }
+        return null;
+    }
+
+    //Finding a movie by any character or word in the title
+    @Override
+    public List<MovieDto> findMoviesByTitle(String searchQuery) {
+        List<Movie> movies = movieRepository.findByTitleContainingIgnoreCase(searchQuery);
+        return movies.stream()
+                .map(MovieDto::new)
+                .collect(Collectors.toList());
     }
 }
