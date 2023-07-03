@@ -22,7 +22,7 @@ public class RatingDto {
             this.id = rating.getId();
         }
         if (rating.getRatingValue() != null) {
-            this.ratingValue = getRatingValue();
+            this.ratingValue = rating.getRatingValue();
         }
         if (rating.getComment() != null) {
             this.comment = rating.getComment();

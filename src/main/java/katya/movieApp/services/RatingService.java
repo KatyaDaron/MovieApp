@@ -1,8 +1,10 @@
 package katya.movieApp.services;
 
 import jakarta.transaction.Transactional;
+import katya.movieApp.dtos.RatingDto;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface RatingService {
     @Transactional
@@ -19,4 +21,6 @@ public interface RatingService {
 
     @Transactional
     void editRating(Long ratingId, Long userId, BigDecimal newRatingValue);
+
+    List<RatingDto> getRatingsAndCommentsByUser(Long userId);
 }

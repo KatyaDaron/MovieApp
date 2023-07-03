@@ -1,6 +1,7 @@
 package katya.movieApp.services;
 
 import jakarta.transaction.Transactional;
+import katya.movieApp.dtos.RatingDto;
 import katya.movieApp.entities.Movie;
 import katya.movieApp.entities.Rating;
 import katya.movieApp.entities.User;
@@ -11,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RatingServiceImpl implements RatingService {
@@ -106,5 +109,13 @@ public class RatingServiceImpl implements RatingService {
         } else {
             System.out.println("Rating not found");
         }
+    }
+
+    @Override
+    public List<RatingDto> getRatingsAndCommentsByUser(Long userId) {
+        List<Rating> ratings = ratingRepository.findByUserId(userId);
+        return ratings.stream()
+                .map(RatingDto::new)
+                .collect(Collectors.toList());
     }
 }
