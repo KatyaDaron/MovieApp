@@ -30,7 +30,7 @@ public class UserServiceImpl {
 
     public List<String> userLogin(UserDto userDto) {
         List<String> response = new ArrayList<>();
-        Optional<User> userOptional = userRepository.findByUsername(userDto.getName());
+        Optional<User> userOptional = userRepository.findByEmail(userDto.getEmail());
         if (userOptional.isPresent()) {
             if (passwordEncoder.matches(userDto.getPassword(), userOptional.get().getPassword())) {
                 response.add("http://localhost:8080/home.html");
