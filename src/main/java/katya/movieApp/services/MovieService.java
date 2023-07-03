@@ -27,4 +27,7 @@ public interface MovieService {
 
     //Finding a movie by any character or word in the title
     List<MovieDto> findMoviesByTitle(String searchQuery);
+
+    //Calculating the average rating for each movie
+    List<MovieDto> getMoviesWithAverageRating();
 }

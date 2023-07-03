@@ -2,13 +2,18 @@ package katya.movieApp.services;
 
 import katya.movieApp.dtos.MovieDto;
 import katya.movieApp.entities.Movie;
+import katya.movieApp.entities.Rating;
 import katya.movieApp.entities.User;
 import katya.movieApp.repositories.MovieRepository;
+import katya.movieApp.repositories.RatingRepository;
 import katya.movieApp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,6 +24,8 @@ public class MovieServiceImpl implements MovieService {
     private MovieRepository movieRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RatingRepository ratingRepository;
 
     //Getting all movies from db
     @Override
@@ -78,5 +85,29 @@ public class MovieServiceImpl implements MovieService {
         return movies.stream()
                 .map(MovieDto::new)
                 .collect(Collectors.toList());
+    }
+
+    //Calculating the average rating for each movie
+    @Override
+    public List<MovieDto> getMoviesWithAverageRating() {
+        List<Movie> movies = movieRepository.findAll();
+        List<MovieDto> movieDtos = new ArrayList<>();
+
+        for (Movie movie : movies) {
+            List<Rating> ratings = ratingRepository.findByMovieId(movie.getId());
+
+            BigDecimal sum = BigDecimal.ZERO;
+            for (Rating rating : ratings) {
+                sum = sum.add(rating.getRatingValue());
+            }
+
+            BigDecimal averageRating = ratings.isEmpty()
+                    ? BigDecimal.ZERO
+                    : sum.divide(BigDecimal.valueOf(ratings.size()), 1, RoundingMode.HALF_UP);
+
+            MovieDto movieDto = new MovieDto(movie.getId(), movie.getTitle(), movie.getImage(), averageRating);
+            movieDtos.add(movieDto);
+        }
+        return movieDtos;
     }
 }

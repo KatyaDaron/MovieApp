@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface RatingRepository extends JpaRepository<Rating, Long> {
     List<Rating> findByUserId(Long userId);
+
+    List<Rating> findByMovieId(Long movieId);
 }
