@@ -21,6 +21,7 @@ public class RatingServiceImpl implements RatingService {
     private UserRepository userRepository;
     @Autowired
     private MovieRepository movieRepository;
+
     @Override
     @Transactional
     public void addRatingToMovie(Long movieId, Long userId, BigDecimal ratingValue, String comment) {
@@ -37,6 +38,73 @@ public class RatingServiceImpl implements RatingService {
             }
 
             ratingRepository.save(rating);
+        }
+    }
+
+    @Override
+    @Transactional
+    public void deleteComment(Long ratingId, Long userId) {
+        Optional<Rating> ratingOptional = ratingRepository.findById(ratingId);
+        if (ratingOptional.isPresent()) {
+            Rating rating = ratingOptional.get();
+            if (rating.getUser().getId().equals(userId)) {
+                rating.setComment(null);
+                ratingRepository.save(rating);
+            } else {
+                System.out.println("You are not authorized to delete this comment");
+            }
+        } else {
+            System.out.println("Rating not found");
+        }
+    }
+
+    @Override
+    @Transactional
+    public void deleteRating(Long ratingId, Long userId) {
+        Optional<Rating> ratingOptional = ratingRepository.findById(ratingId);
+        if (ratingOptional.isPresent()) {
+            Rating rating = ratingOptional.get();
+            if (rating.getUser().getId().equals(userId)) {
+                ratingRepository.delete(rating);
+            } else {
+                System.out.println("You are not authorized to delete this rating");
+            }
+        } else {
+            System.out.println("Rating not found");
+        }
+    }
+
+    @Override
+    @Transactional
+    public void editComment(Long ratingId, Long userId, String newComment) {
+        Optional<Rating> ratingOptional = ratingRepository.findById(ratingId);
+        if (ratingOptional.isPresent()) {
+            Rating rating = ratingOptional.get();
+            if (rating.getUser().getId().equals(userId)) {
+                rating.setComment(newComment);
+                ratingRepository.save(rating);
+            } else {
+                System.out.println("You are not authorized to edit this comment");
+            }
+        } else {
+            System.out.println("Rating not found");
+        }
+    }
+
+    @Override
+    @Transactional
+    public void editRating(Long ratingId, Long userId, BigDecimal newRatingValue) {
+        Optional<Rating> ratingOptional = ratingRepository.findById(ratingId);
+        if (ratingOptional.isPresent()) {
+            Rating rating = ratingOptional.get();
+            if (rating.getUser().getId().equals(userId)) {
+                rating.setRatingValue(newRatingValue);
+                ratingRepository.save(rating);
+            } else {
+                System.out.println("You are not authorized to edit this rating");
+            }
+        } else {
+            System.out.println("Rating not found");
         }
     }
 }
