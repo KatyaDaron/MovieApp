@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -44,6 +45,9 @@ public class Movie {
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JsonManagedReference
     private Set<Rating> ratings = new HashSet<>();
+
+    @ManyToMany(mappedBy = "movies")
+    private List<User> users;
 
     public Movie(MovieDto movieDto) {
         if (movieDto.getTitle() != null) {
