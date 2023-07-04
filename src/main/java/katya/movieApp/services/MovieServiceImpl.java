@@ -29,8 +29,15 @@ public class MovieServiceImpl implements MovieService {
 
     //Getting all movies from db
     @Override
-    public List<Movie> getAllMovies() {
-        return movieRepository.findAll();
+    public List<MovieDto> getAllMovies() {
+        List<Movie> movies = movieRepository.findAll();
+        List<MovieDto> movieDtos = new ArrayList<>();
+
+        for (Movie movie : movies) {
+            MovieDto movieDto = new MovieDto(movie);
+            movieDtos.add(movieDto);
+        }
+        return movieDtos;
     }
 
     //Adding a movie to db

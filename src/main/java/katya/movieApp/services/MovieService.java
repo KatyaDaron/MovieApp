@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MovieService {
     //Getting all movies from db
-    List<Movie> getAllMovies();
+    List<MovieDto> getAllMovies();
 
     //Adding a movie to db
     @Transactional
@@ -16,11 +16,11 @@ public interface MovieService {
 
     //Adding a movie to user's account
     @Transactional
-    void addMovieToUser(Long movieId, Long userId);
+    void addMovieToUser(Long userId, Long movieId);
 
     //Deleting a movie from user's account
     @Transactional
-    void deleteMovieFromUser(Long movieId, Long userId);
+    void deleteMovieFromUser(Long userId, Long movieId);
 
     //Displaying detailed information about a specific movie
     MovieDto getMovieById(Long movieId);
