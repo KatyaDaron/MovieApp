@@ -7,7 +7,7 @@ const headers = {
 }
 
 const baseUrl = 'http://localhost:8080/api/v1/users'
-
+console.log('hello')
 const handleSubmit = async (e) => {
     e.preventDefault();
 

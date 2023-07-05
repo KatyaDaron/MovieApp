@@ -3,10 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/home.css">
-    <title>Home</title>
+    <title>Movies</title>
 </head>
 <body>
-<h1>all movies</h1>
+<header>
+    <h1>MovieApp</h1>
+</header>
+<main>
+    <form>
+        <input
+                type='text'
+                id="title"
+                placeholder="Movie's title"/>
+        <input
+                type='text'
+                id="duration"
+                placeholder="Duration in minutes"/>
+        <input
+                type='text'
+                id="director"
+                placeholder="Director's name"/>
+        <input
+                type='text'
+                id="genre"
+                placeholder="Genre"/>
+        <input
+                type='text'
+                id="maturityRating"
+                placeholder="Maturity rating"/>
+        <input
+                type='text'
+                id="description"
+                placeholder="Description"/>
+        <input
+                type='text'
+                id="image"
+                placeholder='Paste an image URL'/>
+
+        <button>add movie</button>
+    </form>
+
+    <section id="movies-container"></section>
+
+</main>
 <script src="./javascript/home.js" type="application/javascript"></script>
 </body>
 </html>
