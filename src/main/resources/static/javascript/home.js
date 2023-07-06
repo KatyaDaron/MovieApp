@@ -49,10 +49,7 @@ async function getAllMovies() {
         headers: headers
     })
         .then(response => response.json())
-        .then(data => {
-        console.log(data)
-        createMovieCard(data)
-        })
+        .then(data => createMovieCard(data))
         .catch(err => console.error(err))
 }
 
@@ -60,14 +57,18 @@ function createMovieCard(movieArr) {
     moviesContainer.innerHTML = '';
 
     movieArr.forEach(movie => {
-    const movieCard = document.createElement('div')
-        movieCard.classList.add('movie-card')
+        const movieCard = document.createElement('div');
+        movieCard.classList.add('movie-card');
 
-        movieCard.innerHTML = `<img alt='movie cover' src=${movie.image} class="movie-cover"/>
-        <p class="movie-title">${movie.title}</p>
-        `
-        moviesContainer.appendChild(movieCard)
-    })
+        movieCard.innerHTML = `
+            <a href="movie.html?id=${movie.id}">
+                <img alt="movie cover" src=${movie.image} class="movie-cover"/>
+            </a>
+            <p class="movie-title">${movie.title}</p>
+        `;
+
+        moviesContainer.appendChild(movieCard);
+    });
 }
 
 getAllMovies();
