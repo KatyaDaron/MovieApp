@@ -78,7 +78,13 @@ async function movieSearch(query) {
         headers: headers
     })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            if (data.length === 0) {
+                alert('Sorry, there is nothing that matches your search');
+            } else {
+                createMovieCard(data);
+            }
+        })
         .catch(err => console.error(err))
 }
 
