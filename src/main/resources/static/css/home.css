@@ -8,6 +8,38 @@ body {
     background-color: #232323;
 }
 
+.nav {
+  background-color: #333;
+  color: blanchedalmond;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.nav a {
+  color: blanchedalmond;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+#search {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+#search-input {
+    padding: 5px 5px 5px 35px;
+    background: url("pngegg.png") no-repeat 10px center;
+    background-size: 20px 20px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: blanchedalmond;
+    color: black;
+}
+
 header {
     height: 80px;
     display: flex;

@@ -1,5 +1,6 @@
 const moviesContainer = document.querySelector('#movies-container')
 const form = document.querySelector('form')
+const searchInput = document.querySelector('#search-input');
 
 const headers = {
     'Content-Type' : 'application/json'
@@ -71,5 +72,23 @@ function createMovieCard(movieArr) {
     });
 }
 
+async function movieSearch(query) {
+    await fetch(`${baseURL}search?query=${query}`, {
+        method: "GET",
+        headers: headers
+    })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(err => console.error(err))
+}
+
 getAllMovies();
 form.addEventListener("submit", handleSubmit)
+searchInput.addEventListener("keypress", function (event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        const query = searchInput.value.toLowerCase();
+        movieSearch(query);
+        searchInput.value = '';
+    }
+});
