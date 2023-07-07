@@ -30,4 +30,6 @@ public interface MovieService {
 
     //Calculating the average rating for each movie
     List<MovieDto> getMoviesWithAverageRating();
+
+    List<MovieDto> getAddedMoviesByUser(Long userId);
 }

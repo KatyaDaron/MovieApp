@@ -43,6 +43,11 @@ public class MovieController {
         return movieService.findMoviesByTitle(searchQuery);
     }
 
+    @GetMapping("/user/{userId}/movies")
+    public List<MovieDto> getAddedMoviesByUser(@PathVariable Long userId) {
+        return movieService.getAddedMoviesByUser(userId);
+    }
+
     @GetMapping("/average-rating")
     public List<MovieDto> getMoviesWithAverageRating() {
         return movieService.getMoviesWithAverageRating();
