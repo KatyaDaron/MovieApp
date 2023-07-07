@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -116,5 +117,21 @@ public class MovieServiceImpl implements MovieService {
             movieDtos.add(movieDto);
         }
         return movieDtos;
+    }
+
+    @Override
+    public List<MovieDto> getAddedMoviesByUser(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            List<Movie> addedMovies = user.getMovies();
+
+            return addedMovies.stream()
+                    .map(MovieDto::new)
+                    .collect(Collectors.toList());
+        }
+
+        return Collections.emptyList();
     }
 }
