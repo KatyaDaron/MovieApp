@@ -1,6 +1,9 @@
 // Getting the movie ID from the query parameter
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get('id');
+const addBtn = document.getElementById('add-to-watchlist');
+const cookieArr = document.cookie.split("=")
+const userId = cookieArr[1];
 
 const baseURL = "http://localhost:8080/api/v1/movies/"
 
@@ -28,4 +31,17 @@ async function getMovieDetails(movieId) {
     movieCoverImg.src = data.image;
 }
 
+async function addMovieToWatchlist() {
+    try {
+        await fetch(`${baseURL}user/${userId}?movieId=${movieId}`, {
+            method: "POST",
+            headers: headers
+        });
+        console.log("Movie added to watchlist!");
+    } catch (error) {
+        console.error("Error adding movie to watchlist:", error);
+    }
+}
+
 getMovieDetails(movieId);
+addBtn.addEventListener("click", addMovieToWatchlist)
