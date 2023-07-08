@@ -52,7 +52,7 @@ public class MovieServiceImpl implements MovieService {
     //Adding a movie to user's account
     @Override
     @Transactional
-    public void addMovieToUser(Long movieId, Long userId) {
+    public void addMovieToUser(Long userId, Long movieId) {
         Optional<Movie> movieOptional = movieRepository.findById(movieId);
         Optional<User> userOptional = userRepository.findById(userId);
 

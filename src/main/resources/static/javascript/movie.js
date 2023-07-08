@@ -5,7 +5,7 @@ const addBtn = document.getElementById('add-to-watchlist');
 const cookieArr = document.cookie.split("=")
 const userId = cookieArr[1];
 
-const baseURL = "http://localhost:8080/api/v1/movies/"
+const baseURL = "http://localhost:8080/api/v1/movies"
 
 const headers = {
     'Content-Type' : 'application/json'
@@ -13,7 +13,7 @@ const headers = {
 
 // Fetching and displaying the movie details using the movie ID
 async function getMovieDetails(movieId) {
-    const response = await fetch(`${baseURL}${movieId}`, {
+    const response = await fetch(`${baseURL}/${movieId}`, {
         method: "GET",
         headers: headers
     });
@@ -33,11 +33,11 @@ async function getMovieDetails(movieId) {
 
 async function addMovieToWatchlist() {
     try {
-        await fetch(`${baseURL}user/${userId}?movieId=${movieId}`, {
+        await fetch(`${baseURL}/user/${userId}?movieId=${movieId}`, {
             method: "POST",
             headers: headers
         });
-        console.log("Movie added to watchlist!");
+        console.log(`Movie ${movieId} added to watchlist of user ${userId}!`);
     } catch (error) {
         console.error("Error adding movie to watchlist:", error);
     }

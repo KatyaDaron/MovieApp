@@ -5,7 +5,7 @@ const userId = cookieArr[1];
 const baseURL = "http://localhost:8080/api/v1/movies"
 
 // Fetching the user's added movies and displaying them
-async function fetchAndDisplayAddedMovies() {
+async function fetchAndDisplayAddedMovies(userId) {
     try {
         const response = await fetch(`${baseURL}/${userId}/movies`, {
             method: "GET",
@@ -36,4 +36,4 @@ async function fetchAndDisplayAddedMovies() {
     }
 }
 
-fetchAndDisplayAddedMovies();
+fetchAndDisplayAddedMovies(userId);
