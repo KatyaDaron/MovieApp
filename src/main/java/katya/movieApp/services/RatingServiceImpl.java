@@ -27,7 +27,7 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     @Transactional
-    public void addRatingToMovie(Long movieId, Long userId, BigDecimal ratingValue, String comment) {
+    public void addRatingToMovie(Long movieId, Long userId, RatingDto ratingDto) {
         Optional<User> userOptional = userRepository.findById(userId);
         Optional<Movie> movieOptional = movieRepository.findById(movieId);
 
@@ -35,9 +35,11 @@ public class RatingServiceImpl implements RatingService {
             User user = userOptional.get();
             Movie movie = movieOptional.get();
 
-            Rating rating = new Rating(user, movie, ratingValue);
-            if (comment != null && !comment.isEmpty()) {
-                rating.setComment(comment);
+            Rating rating = new Rating(ratingDto);
+            rating.setUser(user);
+            rating.setMovie(movie);
+            if (ratingDto.getComment() != null && !ratingDto.getComment().isEmpty()) {
+                rating.setComment(ratingDto.getComment());
             }
 
             ratingRepository.save(rating);

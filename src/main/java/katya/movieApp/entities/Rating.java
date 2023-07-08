@@ -41,10 +41,4 @@ public class Rating {
             this.comment = ratingDto.getComment();
         }
     }
-
-    public Rating(User user, Movie movie, BigDecimal ratingValue) {
-        this.user = user;
-        this.movie = movie;
-        this.ratingValue = ratingValue;
-    }
 }
