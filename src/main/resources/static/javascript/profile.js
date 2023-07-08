@@ -28,11 +28,31 @@ async function fetchAndDisplayAddedMovies(userId) {
                     <img alt="movie cover" src=${movie.image} class="movie-cover"/>
                 </a>
                 <p class="movie-title">${movie.title}</p>
+                <button class="delete-button">Delete</button>
                 `;
+
+                const deleteButton = movieCard.querySelector('.delete-button');
+                deleteButton.addEventListener('click', () => deleteMovieCard(movie.id));
+
             addedMoviesContainer.appendChild(movieCard);
         });
     } catch (error) {
         console.error("Error fetching added movies:", error);
+    }
+}
+
+// Deleting a movie card
+async function deleteMovieCard(movieId) {
+    try {
+        await fetch(`${baseURL}/user/${userId}?movieId=${movieId}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        fetchAndDisplayAddedMovies(userId);
+    } catch (error) {
+        console.error("Error deleting movie:", error);
     }
 }
 

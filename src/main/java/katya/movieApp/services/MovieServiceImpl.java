@@ -66,7 +66,7 @@ public class MovieServiceImpl implements MovieService {
     //Deleting a movie from user's account
     @Override
     @Transactional
-    public void deleteMovieFromUser(Long movieId, Long userId) {
+    public void deleteMovieFromUser(Long userId, Long movieId) {
         Optional<User> userOptional = userRepository.findById(userId);
 
         if (userOptional.isPresent()) {
