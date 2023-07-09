@@ -11,7 +11,6 @@ import katya.movieApp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,12 +35,15 @@ public class RatingServiceImpl implements RatingService {
             Movie movie = movieOptional.get();
 
             Rating rating = new Rating(ratingDto);
+
             rating.setUser(user);
             rating.setMovie(movie);
+            if (ratingDto.getRatingValue() != 0) {
+                rating.setRatingValue(ratingDto.getRatingValue());
+            }
             if (ratingDto.getComment() != null && !ratingDto.getComment().isEmpty()) {
                 rating.setComment(ratingDto.getComment());
             }
-
             ratingRepository.save(rating);
         }
     }
@@ -90,23 +92,6 @@ public class RatingServiceImpl implements RatingService {
                 ratingRepository.save(rating);
             } else {
                 System.out.println("You are not authorized to edit this comment");
-            }
-        } else {
-            System.out.println("Rating not found");
-        }
-    }
-
-    @Override
-    @Transactional
-    public void editRating(Long ratingId, Long userId, BigDecimal newRatingValue) {
-        Optional<Rating> ratingOptional = ratingRepository.findById(ratingId);
-        if (ratingOptional.isPresent()) {
-            Rating rating = ratingOptional.get();
-            if (rating.getUser().getId().equals(userId)) {
-                rating.setRatingValue(newRatingValue);
-                ratingRepository.save(rating);
-            } else {
-                System.out.println("You are not authorized to edit this rating");
             }
         } else {
             System.out.println("Rating not found");

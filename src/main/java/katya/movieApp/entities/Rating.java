@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Entity
 @Table(name = "Ratings")
 @Data
@@ -20,7 +18,7 @@ public class Rating {
     private Long id;
 
     @Column(name = "rating_value", precision = 2, scale = 1)
-    private BigDecimal ratingValue;
+    private int ratingValue;
 
     @Column(columnDefinition = "text")
     private String comment;
@@ -34,7 +32,7 @@ public class Rating {
     private Movie movie;
 
     public Rating(RatingDto ratingDto) {
-        if (ratingDto.getRatingValue() != null) {
+        if (ratingDto.getRatingValue() != 0) {
             this.ratingValue = ratingDto.getRatingValue();
         }
         if (ratingDto.getComment() != null) {

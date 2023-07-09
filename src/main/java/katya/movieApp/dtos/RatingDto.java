@@ -5,14 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class RatingDto {
     private Long id;
-    private BigDecimal ratingValue;
+    private int ratingValue;
     private String comment;
     private UserDto userDto;
     private MovieDto movieDto;
@@ -21,7 +19,7 @@ public class RatingDto {
         if (rating.getId() != null) {
             this.id = rating.getId();
         }
-        if (rating.getRatingValue() != null) {
+        if (rating.getRatingValue() != 0) {
             this.ratingValue = rating.getRatingValue();
         }
         if (rating.getComment() != null) {

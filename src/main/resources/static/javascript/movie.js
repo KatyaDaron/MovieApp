@@ -5,7 +5,8 @@ const addBtn = document.getElementById('add-to-watchlist');
 const cookieArr = document.cookie.split("=")
 const userId = cookieArr[1];
 
-const baseURL = "http://localhost:8080/api/v1/movies"
+const baseMoviesURL = "http://localhost:8080/api/v1/movies";
+const baseRatingsURL = "http://localhost:8080/api/v1/ratings";
 
 const headers = {
     'Content-Type' : 'application/json'
@@ -13,7 +14,7 @@ const headers = {
 
 // Fetching and displaying the movie details using the movie ID
 async function getMovieDetails(movieId) {
-    const response = await fetch(`${baseURL}/${movieId}`, {
+    const response = await fetch(`${baseMoviesURL}/${movieId}`, {
         method: "GET",
         headers: headers
     });
@@ -33,7 +34,7 @@ async function getMovieDetails(movieId) {
 
 async function addMovieToWatchlist() {
     try {
-        await fetch(`${baseURL}/user/${userId}?movieId=${movieId}`, {
+        await fetch(`${baseMoviesURL}/user/${userId}?movieId=${movieId}`, {
             method: "POST",
             headers: headers
         });
@@ -43,5 +44,38 @@ async function addMovieToWatchlist() {
     }
 }
 
+async function addRatingAndComment(movieId) {
+    const ratingSelect = document.getElementById("rating-select");
+    const commentInput = document.getElementById("comment-input");
+
+    const rating = ratingSelect.value;
+    const comment = commentInput.value;
+
+    let bodyObj = {
+            ratingValue: parseInt(rating),
+            comment: comment
+            }
+
+    try {
+        const response = await fetch(`${baseRatingsURL}/user/${movieId}?userId=${userId}`, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(bodyObj)
+        });
+        if (response.ok) {
+            alert("Thank you for your feedback!");
+        }
+
+        ratingSelect.value = "";
+        commentInput.value = "";
+    } catch (error) {
+        console.error("Error submitting rating and comment:", error);
+    }
+}
+
+document.getElementById("rating-comment-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    addRatingAndComment(movieId);
+});
 getMovieDetails(movieId);
 addBtn.addEventListener("click", addMovieToWatchlist)

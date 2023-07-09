@@ -29,7 +29,7 @@ public interface MovieService {
     List<MovieDto> findMoviesByTitle(String searchQuery);
 
     //Calculating the average rating for each movie
-    List<MovieDto> getMoviesWithAverageRating();
+//    List<MovieDto> getMoviesWithAverageRating();
 
     List<MovieDto> getAddedMoviesByUser(Long userId);
 }

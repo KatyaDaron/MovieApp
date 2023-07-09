@@ -48,8 +48,8 @@ public class MovieController {
         return movieService.getAddedMoviesByUser(userId);
     }
 
-    @GetMapping("/average-rating")
-    public List<MovieDto> getMoviesWithAverageRating() {
-        return movieService.getMoviesWithAverageRating();
-    }
+//    @GetMapping("/average-rating")
+//    public List<MovieDto> getMoviesWithAverageRating() {
+//        return movieService.getMoviesWithAverageRating();
+//    }
 }

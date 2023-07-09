@@ -19,8 +19,5 @@ public interface RatingService {
     @Transactional
     void editComment(Long ratingId, Long userId, String newComment);
 
-    @Transactional
-    void editRating(Long ratingId, Long userId, BigDecimal newRatingValue);
-
     List<RatingDto> getRatingsAndCommentsByUser(Long userId);
 }

@@ -5,7 +5,6 @@ import katya.movieApp.services.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -34,10 +33,10 @@ public class RatingController {
         ratingService.editComment(ratingId, userId, newComment);
     }
 
-    @PutMapping("/user/rating/edit/{ratingId}")
-    public void editRating(@PathVariable Long ratingId, @RequestParam Long userId, @RequestParam BigDecimal newRatingValue) {
-        ratingService.editRating(ratingId, userId, newRatingValue);
-    }
+//    @PutMapping("/user/rating/edit/{ratingId}")
+//    public void editRating(@PathVariable Long ratingId, @RequestParam Long userId, @RequestParam BigDecimal newRatingValue) {
+//        ratingService.editRating(ratingId, userId, newRatingValue);
+//    }
 
     @GetMapping("/user/{userId}")
     public List<RatingDto> getRatingsAndCommentsByUser(@PathVariable Long userId) {
