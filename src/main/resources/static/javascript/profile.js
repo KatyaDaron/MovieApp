@@ -1,6 +1,11 @@
 const addedMoviesContainer = document.getElementById('added-movies-container');
-const cookieArr = document.cookie.split("=")
-const userId = cookieArr[1];
+const cookieArr = document.cookie.split("; ").map(cookie => cookie.split("="));
+const userIdCookie = cookieArr.find(cookie => cookie[0] === 'userId');
+const userNameCookie = cookieArr.find(cookie => cookie[0] === 'userName');
+const userId = userIdCookie[1];
+const userName = userNameCookie[1];
+const usernameSpan = document.getElementById('username');
+usernameSpan.textContent = userName;
 
 const baseURL = "http://localhost:8080/api/v1/movies"
 
