@@ -10,6 +10,8 @@ public interface RatingService {
     @Transactional
     void addRatingAndCommentToMovie(Long movieId, Long userId, RatingDto ratingDto);
 
+    List<RatingDto> getAllCommentsForMovie(Long movieId);
+
     @Transactional
     void deleteComment(Long ratingId, Long userId);
 

@@ -68,8 +68,40 @@ async function addRatingAndComment(movieId) {
 
         ratingSelect.value = "";
         commentInput.value = "";
+
+        getAllComments(movieId);
     } catch (error) {
         console.error("Error submitting rating and comment:", error);
+    }
+}
+
+async function getAllComments(movieId) {
+    try {
+        const response = await fetch(`${baseRatingsURL}/movie/${movieId}/comments`, {
+            method: "GET",
+            headers: headers
+        });
+
+        if (response.ok) {
+            const comments = await response.json();
+            const commentsContainer = document.getElementById("comments-container");
+
+            // Clearing any existing comments
+            commentsContainer.innerHTML = "";
+
+            // Creating HTML elements for each comment
+            comments.forEach((comment) => {
+                const commentElement = document.createElement("div");
+                commentElement.classList.add("comment");
+                commentElement.innerHTML = `<p class="username">${comment.username}</p>
+                                            <p class="comment-text">${comment.comment}</p>`;
+                commentsContainer.appendChild(commentElement);
+            });
+        } else {
+            console.error("Error fetching comments:", response.status);
+        }
+    } catch (error) {
+        console.error("Error fetching comments:", error);
     }
 }
 
@@ -78,4 +110,5 @@ document.getElementById("rating-comment-form").addEventListener("submit", functi
     addRatingAndComment(movieId);
 });
 getMovieDetails(movieId);
-addBtn.addEventListener("click", addMovieToWatchlist)
+addBtn.addEventListener("click", addMovieToWatchlist);
+getAllComments(movieId);

@@ -49,6 +49,14 @@ public class RatingServiceImpl implements RatingService {
     }
 
     @Override
+    public List<RatingDto> getAllCommentsForMovie(Long movieId) {
+        List<Rating> ratings = ratingRepository.findByMovieId(movieId);
+        return ratings.stream()
+                .map(RatingDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     @Transactional
     public void deleteComment(Long ratingId, Long userId) {
         Optional<Rating> ratingOptional = ratingRepository.findById(ratingId);

@@ -18,6 +18,11 @@ public class RatingController {
         ratingService.addRatingAndCommentToMovie(movieId, userId, ratingDto);
     }
 
+    @GetMapping("/movie/{movieId}/comments")
+    public List<RatingDto> getAllCommentsForMovie(@PathVariable Long movieId) {
+        return ratingService.getAllCommentsForMovie(movieId);
+    }
+
     @DeleteMapping("/user/comment/{ratingId}")
     public void deleteComment(@PathVariable Long ratingId, @RequestParam Long userId) {
         ratingService.deleteComment(ratingId, userId);
