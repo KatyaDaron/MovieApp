@@ -26,7 +26,7 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     @Transactional
-    public void addRatingToMovie(Long movieId, Long userId, RatingDto ratingDto) {
+    public void addRatingAndCommentToMovie(Long movieId, Long userId, RatingDto ratingDto) {
         Optional<User> userOptional = userRepository.findById(userId);
         Optional<Movie> movieOptional = movieRepository.findById(movieId);
 

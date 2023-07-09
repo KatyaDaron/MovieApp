@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface RatingService {
     @Transactional
-    void addRatingToMovie(Long movieId, Long userId, RatingDto ratingDto);
+    void addRatingAndCommentToMovie(Long movieId, Long userId, RatingDto ratingDto);
 
     @Transactional
     void deleteComment(Long ratingId, Long userId);

@@ -14,8 +14,8 @@ public class RatingController {
     private RatingService ratingService;
 
     @PostMapping("/user/{movieId}")
-    public void addRatingToMovie(@PathVariable Long movieId, @RequestParam Long userId, @RequestBody RatingDto ratingDto) {
-        ratingService.addRatingToMovie(movieId, userId, ratingDto);
+    public void addRatingAndCommentToMovie(@PathVariable Long movieId, @RequestParam Long userId, @RequestBody RatingDto ratingDto) {
+        ratingService.addRatingAndCommentToMovie(movieId, userId, ratingDto);
     }
 
     @DeleteMapping("/user/comment/{ratingId}")
