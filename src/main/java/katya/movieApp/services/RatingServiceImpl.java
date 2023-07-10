@@ -28,7 +28,7 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     @Transactional
-    public void addRatingAndCommentToMovie(Long movieId, Long userId, RatingDto ratingDto) {
+    public void addFeedback(Long movieId, Long userId, RatingDto ratingDto) {
         Optional<User> userOptional = userRepository.findById(userId);
         Optional<Movie> movieOptional = movieRepository.findById(movieId);
 
@@ -43,7 +43,7 @@ public class RatingServiceImpl implements RatingService {
     }
 
     @Override
-    public List<RatingDto> getAllCommentsForMovie(Long movieId) {
+    public List<RatingDto> getAllFeedbacks(Long movieId) {
         List<Rating> ratings = ratingRepository.findByMovieIdOrderByIdDesc(movieId);
         return ratings.stream()
                 .map(rating -> new RatingDto(rating, new UserDto(rating.getUser()), new MovieDto(rating.getMovie())))
@@ -52,31 +52,14 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     @Transactional
-    public void deleteComment(Long ratingId, Long userId) {
-        Optional<Rating> ratingOptional = ratingRepository.findById(ratingId);
-        if (ratingOptional.isPresent()) {
-            Rating rating = ratingOptional.get();
-            if (rating.getUser().getId().equals(userId)) {
-                rating.setComment(null);
-                ratingRepository.save(rating);
-            } else {
-                System.out.println("You are not authorized to delete this comment");
-            }
-        } else {
-            System.out.println("Rating not found");
-        }
-    }
-
-    @Override
-    @Transactional
-    public void deleteRating(Long ratingId, Long userId) {
+    public void deleteFeedback(Long ratingId, Long userId) {
         Optional<Rating> ratingOptional = ratingRepository.findById(ratingId);
         if (ratingOptional.isPresent()) {
             Rating rating = ratingOptional.get();
             if (rating.getUser().getId().equals(userId)) {
                 ratingRepository.delete(rating);
             } else {
-                System.out.println("You are not authorized to delete this rating");
+                System.out.println("You are not authorized to delete this comment");
             }
         } else {
             System.out.println("Rating not found");
@@ -98,13 +81,5 @@ public class RatingServiceImpl implements RatingService {
         } else {
             System.out.println("Rating not found");
         }
-    }
-
-    @Override
-    public List<RatingDto> getRatingsAndCommentsByUser(Long userId) {
-        List<Rating> ratings = ratingRepository.findByUserId(userId);
-        return ratings.stream()
-                .map(RatingDto::new)
-                .collect(Collectors.toList());
     }
 }

@@ -7,7 +7,7 @@ const userName = userNameCookie[1];
 const usernameSpan = document.getElementById('username');
 usernameSpan.textContent = userName;
 
-const baseURL = "http://localhost:8080/api/v1/movies"
+const baseURL = "http://localhost:8080/api/movies"
 
 // Fetching the user's added movies and displaying them
 async function fetchAndDisplayAddedMovies(userId) {

@@ -7,7 +7,7 @@ const headers = {
     'Content-Type' : 'application/json'
 }
 
-const baseUrl = 'http://localhost:8080/api/v1/users'
+const baseUrl = 'http://localhost:8080/api/users'
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const handleSubmit = async (e) => {
     } else {
         const warningMessage = "User with this email already registered.";
         alert(warningMessage);
-        }
+    }
 }
 
 registerForm.addEventListener("submit", handleSubmit)

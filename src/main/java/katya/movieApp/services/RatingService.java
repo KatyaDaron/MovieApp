@@ -8,18 +8,13 @@ import java.util.List;
 
 public interface RatingService {
     @Transactional
-    void addRatingAndCommentToMovie(Long movieId, Long userId, RatingDto ratingDto);
+    void addFeedback(Long movieId, Long userId, RatingDto ratingDto);
 
-    List<RatingDto> getAllCommentsForMovie(Long movieId);
-
-    @Transactional
-    void deleteComment(Long ratingId, Long userId);
+    List<RatingDto> getAllFeedbacks(Long movieId);
 
     @Transactional
-    void deleteRating(Long ratingId, Long userId);
+    void deleteFeedback(Long ratingId, Long userId);
 
     @Transactional
     void editComment(Long ratingId, Long userId, String newComment);
-
-    List<RatingDto> getRatingsAndCommentsByUser(Long userId);
 }

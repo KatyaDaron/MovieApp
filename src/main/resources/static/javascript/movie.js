@@ -1,13 +1,13 @@
 // Getting the movie ID from the query parameter
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get('id');
-const addBtn = document.getElementById('add-to-watchlist');
+const addMovieBtn = document.getElementById('add-to-watchlist');
 const cookieArr = document.cookie.split(";").map(cookie => cookie.trim().split("="));
 const userIdCookie = cookieArr.find(cookie => cookie[0] === "userId");
 const userId = userIdCookie[1]
 
-const baseMoviesURL = "http://localhost:8080/api/v1/movies";
-const baseRatingsURL = "http://localhost:8080/api/v1/ratings";
+const baseMoviesURL = "http://localhost:8080/api/movies";
+const baseFeedbacksURL = "http://localhost:8080/api/feedbacks";
 
 const headers = {
     'Content-Type' : 'application/json'
@@ -45,7 +45,7 @@ async function addMovieToWatchlist() {
     }
 }
 
-async function addRatingAndComment(movieId) {
+async function addFeedback(movieId) {
     const ratingSelect = document.getElementById("rating-select");
     const commentInput = document.getElementById("comment-input");
 
@@ -58,7 +58,7 @@ async function addRatingAndComment(movieId) {
             }
 
     try {
-        const response = await fetch(`${baseRatingsURL}/user/${movieId}?userId=${userId}`, {
+        const response = await fetch(`${baseFeedbacksURL}/movie/${movieId}?userId=${userId}`, {
             method: "POST",
             headers: headers,
             body: JSON.stringify(bodyObj)
@@ -70,46 +70,74 @@ async function addRatingAndComment(movieId) {
         ratingSelect.value = "";
         commentInput.value = "";
 
-        getAllComments(movieId);
+        getAllFeedbacks(movieId);
     } catch (error) {
         console.error("Error submitting rating and comment:", error);
     }
 }
 
-async function getAllComments(movieId) {
+async function getAllFeedbacks(movieId) {
     try {
-        const response = await fetch(`${baseRatingsURL}/movie/${movieId}/comments`, {
+        const response = await fetch(`${baseFeedbacksURL}/movie/${movieId}`, {
             method: "GET",
             headers: headers
         });
 
         if (response.ok) {
-            const comments = await response.json();
-            const commentsContainer = document.getElementById("comments-container");
+            const feedbacks = await response.json();
+            const feedbacksContainer = document.getElementById("feedbacks-container");
 
             // Clearing any existing comments
-            commentsContainer.innerHTML = "";
+            feedbacksContainer.innerHTML = "";
 
             // Creating HTML elements for each comment
-            comments.forEach((comment) => {
-                const commentElement = document.createElement("div");
-                commentElement.classList.add("comment");
-                commentElement.innerHTML = `<p class="username">${comment.userDto.name}</p>
-                                            <p class="comment-text">${comment.comment}</p>`;
-                commentsContainer.appendChild(commentElement);
+            feedbacks.forEach((feedback) => {
+                const feedbackElement = document.createElement("div");
+                feedbackElement.classList.add("feedback");
+                feedbackElement.innerHTML = `<p class="username">${feedback.userDto.name}</p>
+                                             <p class="rating-value">${feedback.ratingValue}</p>
+                                             <p class="comment-text">${feedback.comment}</p>`;
+
+            // Checking if the comment belongs to the current logged-in user
+            if (feedback.userDto.id === Number(userId)) {
+                const deleteButton = document.createElement("button");
+                deleteButton.innerText = "Delete";
+                deleteButton.addEventListener("click", () => deleteFeedback(feedback.id));
+                feedbackElement.appendChild(deleteButton);
+            }
+
+            feedbacksContainer.appendChild(feedbackElement);
             });
         } else {
-            console.error("Error fetching comments:", response.status);
+            console.error("Error fetching feedbacks:", response.status);
         }
     } catch (error) {
-        console.error("Error fetching comments:", error);
+        console.error("Error fetching feedbacks:", error);
     }
 }
 
-document.getElementById("rating-comment-form").addEventListener("submit", function (event) {
+async function deleteFeedback(feedbackId) {
+    try {
+        const response = await fetch(`${baseFeedbacksURL}/${feedbackId}?userId=${userId}`, {
+            method: "DELETE",
+            headers: headers
+        });
+
+        if (response.ok) {
+            getAllFeedbacks(movieId);
+            alert("Feedback deleted successfully!");
+        } else {
+            console.error("Error deleting feedback:", response.status);
+        }
+    } catch (error) {
+        console.error("Error deleting feedback:", error);
+    }
+}
+
+document.getElementById("feedback-form").addEventListener("submit", function (event) {
     event.preventDefault();
-    addRatingAndComment(movieId);
+    addFeedback(movieId);
 });
 getMovieDetails(movieId);
-addBtn.addEventListener("click", addMovieToWatchlist);
-getAllComments(movieId);
+addMovieBtn.addEventListener("click", addMovieToWatchlist);
+getAllFeedbacks(movieId);
