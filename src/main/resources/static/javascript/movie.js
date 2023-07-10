@@ -2,8 +2,9 @@
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get('id');
 const addBtn = document.getElementById('add-to-watchlist');
-const cookieArr = document.cookie.split("=")
-const userId = cookieArr[1];
+const cookieArr = document.cookie.split(";").map(cookie => cookie.trim().split("="));
+const userIdCookie = cookieArr.find(cookie => cookie[0] === "userId");
+const userId = userIdCookie[1]
 
 const baseMoviesURL = "http://localhost:8080/api/v1/movies";
 const baseRatingsURL = "http://localhost:8080/api/v1/ratings";
@@ -93,7 +94,7 @@ async function getAllComments(movieId) {
             comments.forEach((comment) => {
                 const commentElement = document.createElement("div");
                 commentElement.classList.add("comment");
-                commentElement.innerHTML = `<p class="username">${comment.username}</p>
+                commentElement.innerHTML = `<p class="username">${comment.userDto.name}</p>
                                             <p class="comment-text">${comment.comment}</p>`;
                 commentsContainer.appendChild(commentElement);
             });

@@ -11,4 +11,6 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
     List<Rating> findByUserId(Long userId);
 
     List<Rating> findByMovieId(Long movieId);
+
+    List<Rating> findByMovieIdOrderByIdDesc(Long movieId);
 }

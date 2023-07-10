@@ -1,7 +1,9 @@
 package katya.movieApp.services;
 
 import jakarta.transaction.Transactional;
+import katya.movieApp.dtos.MovieDto;
 import katya.movieApp.dtos.RatingDto;
+import katya.movieApp.dtos.UserDto;
 import katya.movieApp.entities.Movie;
 import katya.movieApp.entities.Rating;
 import katya.movieApp.entities.User;
@@ -34,25 +36,17 @@ public class RatingServiceImpl implements RatingService {
             User user = userOptional.get();
             Movie movie = movieOptional.get();
 
-            Rating rating = new Rating(ratingDto);
+            Rating rating = new Rating(ratingDto, user, movie);
 
-            rating.setUser(user);
-            rating.setMovie(movie);
-            if (ratingDto.getRatingValue() != 0) {
-                rating.setRatingValue(ratingDto.getRatingValue());
-            }
-            if (ratingDto.getComment() != null && !ratingDto.getComment().isEmpty()) {
-                rating.setComment(ratingDto.getComment());
-            }
             ratingRepository.save(rating);
         }
     }
 
     @Override
     public List<RatingDto> getAllCommentsForMovie(Long movieId) {
-        List<Rating> ratings = ratingRepository.findByMovieId(movieId);
+        List<Rating> ratings = ratingRepository.findByMovieIdOrderByIdDesc(movieId);
         return ratings.stream()
-                .map(RatingDto::new)
+                .map(rating -> new RatingDto(rating, new UserDto(rating.getUser()), new MovieDto(rating.getMovie())))
                 .collect(Collectors.toList());
     }
 

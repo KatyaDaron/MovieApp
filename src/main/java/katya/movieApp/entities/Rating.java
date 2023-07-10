@@ -31,12 +31,14 @@ public class Rating {
     @JsonBackReference
     private Movie movie;
 
-    public Rating(RatingDto ratingDto) {
+    public Rating(RatingDto ratingDto, User user, Movie movie) {
         if (ratingDto.getRatingValue() != 0) {
             this.ratingValue = ratingDto.getRatingValue();
         }
         if (ratingDto.getComment() != null) {
             this.comment = ratingDto.getComment();
         }
+        this.user = user;
+        this.movie = movie;
     }
 }
