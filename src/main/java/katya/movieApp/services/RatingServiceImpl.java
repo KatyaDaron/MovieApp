@@ -68,12 +68,13 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     @Transactional
-    public void editComment(Long ratingId, Long userId, String newComment) {
+    public void editFeedback(Long ratingId, Long userId, RatingDto newFeedback) {
         Optional<Rating> ratingOptional = ratingRepository.findById(ratingId);
         if (ratingOptional.isPresent()) {
             Rating rating = ratingOptional.get();
             if (rating.getUser().getId().equals(userId)) {
-                rating.setComment(newComment);
+                rating.setComment(newFeedback.getComment());
+                rating.setRatingValue(newFeedback.getRatingValue());
                 ratingRepository.save(rating);
             } else {
                 System.out.println("You are not authorized to edit this comment");

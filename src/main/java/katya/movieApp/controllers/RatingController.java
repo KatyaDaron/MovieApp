@@ -28,9 +28,9 @@ public class RatingController {
         ratingService.deleteFeedback(ratingId, userId);
     }
 
-    @PutMapping("/user/comment/edit/{ratingId}")
-    public void editComment(@PathVariable Long ratingId, @RequestParam Long userId, @RequestParam String newComment) {
-        ratingService.editComment(ratingId, userId, newComment);
+    @PutMapping("/{ratingId}")
+    public void editFeedback(@PathVariable Long ratingId, @RequestParam Long userId, @RequestBody RatingDto newFeedback) {
+        ratingService.editFeedback(ratingId, userId, newFeedback);
     }
 
 //    @PutMapping("/user/rating/edit/{ratingId}")

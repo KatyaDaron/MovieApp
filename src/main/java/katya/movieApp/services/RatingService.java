@@ -16,5 +16,5 @@ public interface RatingService {
     void deleteFeedback(Long ratingId, Long userId);
 
     @Transactional
-    void editComment(Long ratingId, Long userId, String newComment);
+    void editFeedback(Long ratingId, Long userId, RatingDto newFeedback);
 }
