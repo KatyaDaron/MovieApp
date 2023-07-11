@@ -123,7 +123,8 @@ async function getAllFeedbacks(movieId) {
             const averageRating = calculateAverageRating(ratings);
 
             // Displaying average rating
-            document.getElementById("movie-average-rating").textContent = `${averageRating.toFixed(1)}`;
+            const displayedRating = (averageRating % 1 === 0) ? averageRating.toString() : averageRating.toFixed(1);
+            document.getElementById("movie-average-rating").textContent = displayedRating;
         } else {
             console.error("Error fetching feedbacks:", response.status);
         }
