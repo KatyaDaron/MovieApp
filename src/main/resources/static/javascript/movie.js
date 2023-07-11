@@ -117,12 +117,29 @@ async function getAllFeedbacks(movieId) {
 
             feedbacksContainer.appendChild(feedbackElement);
             });
+
+            // Calculating average rating
+            const ratings = feedbacks.map((feedback) => feedback.ratingValue);
+            const averageRating = calculateAverageRating(ratings);
+
+            // Displaying average rating
+            document.getElementById("movie-average-rating").textContent = `Average Rating: ${averageRating.toFixed(1)}`;
         } else {
             console.error("Error fetching feedbacks:", response.status);
         }
     } catch (error) {
         console.error("Error fetching feedbacks:", error);
     }
+}
+
+function calculateAverageRating(ratings) {
+    if (ratings.length === 0) {
+        return 0;
+    }
+
+    const sum = ratings.reduce((total, rating) => total + rating, 0);
+    const average = sum / ratings.length;
+    return average;
 }
 
 async function deleteFeedback(feedbackId) {
