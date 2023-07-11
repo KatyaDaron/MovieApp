@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,8 +20,6 @@ public class MovieDto {
     private String maturityRating;
     private String description;
     private String image;
-
-    private BigDecimal averageRating;
     private Set<RatingDto> ratingDtoSet = new HashSet<>();
 
     public MovieDto(Movie movie) {
@@ -50,12 +47,5 @@ public class MovieDto {
         if (movie.getImage() != null) {
             this.image = movie.getImage();
         }
-    }
-
-    public MovieDto(Long id, String title, String image, BigDecimal averageRating) {
-        this.id = id;
-        this.title = title;
-        this.image = image;
-        this.averageRating = averageRating;
     }
 }
