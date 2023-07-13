@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #232323;
+}
+
+.nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #333;
+    color: blanchedalmond;
+    padding: 10px;
+    height: 60px;
+}
+
+.nav a {
+    color: blanchedalmond;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.movie-details {
+    display: flex;
+    flex-direction: row-reverse;
+    flex: 1 1 60%;
+    margin: 40px;
+}
+
+.movie-info {
+    flex: 1 1 40%;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    color: blanchedalmond;
+}
+
+.movie-info h1 {
+    margin-bottom: 10px;
+}
+
+.movie-info p {
+    margin-bottom: 5px;
+}
+
+.movie-info strong {
+    font-weight: bold;
+}
+
+.movie-info span {
+    margin-left: 5px;
+}
+
+.movie-cover {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movie-cover-img {
+    width: 400px;
+    height: 550px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+#add-to-watchlist {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 50px;
+    color: black;
+    background-color: blanchedalmond;
+    border: none;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+#add-to-watchlist:hover {
+    background-color: #D2B48C;
+}
+
+#add-to-watchlist:active {
+    background-color: darkgoldenrod;
+}
+
+.feedbacks-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+#feedback-form {
+    background-color: blanchedalmond;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 105px;
+    width: 23rem;
+    border-radius: 20px;
+}
+
+#feedback-form label,
+#feedback-form input,
+#feedback-form select,
+#feedback-form button {
+    margin: 5px 0;
+}
+
+#feedback-form button {
+    background-color: #232323;
+    color: blanchedalmond;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+#feedbacks-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-container {
+    margin-right: 110px;
+}
+
+.feedback {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.feedback .username {
+    font-weight: bold;
+    color: blanchedalmond;
+}
+
+.feedback .rating-value {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    color: #eee;
+    text-align: center;
+    line-height: 20px;
+}
+
+.feedback .comment-text {
+    color:blanchedalmond;
+}

@@ -45,6 +45,19 @@ async function addMovieToWatchlist() {
     }
 }
 
+//Updating the appearance of a button to indicate that a movie has been added to a watchlist
+function addToWatchlist() {
+    addMovieBtn.innerHTML = "&#x2713; Added";
+    addMovieBtn.disabled = true;
+    addMovieBtn.style.backgroundColor = "lightgreen";
+
+    setTimeout(function() {
+        addMovieBtn.innerHTML = "Add to Watchlist";
+        addMovieBtn.disabled = false;
+        addMovieBtn.style.backgroundColor = "blanchedalmond";
+    }, 2000);
+}
+
 async function addFeedback(movieId) {
     const ratingSelect = document.getElementById("rating-select");
     const commentInput = document.getElementById("comment-input");
@@ -185,7 +198,7 @@ async function editFeedback(feedback) {
     submitButton.innerText = "Update";
 
     // Populating the rating select dropdown with options
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 10; i++) {
         const option = document.createElement("option");
         option.value = i;
         option.text = i;
