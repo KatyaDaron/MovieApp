@@ -9,17 +9,19 @@ body {
 }
 
 .nav {
-  background-color: #333;
-  color: blanchedalmond;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-}
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #333;
+    color: blanchedalmond;
+    padding: 10px;
+    height: 60px;
+ }
 
 .nav a {
-  color: blanchedalmond;
-  text-decoration: none;
-  margin: 0 10px;
+    color: blanchedalmond;
+    text-decoration: none;
+    margin: 0 10px;
 }
 
 #search {
