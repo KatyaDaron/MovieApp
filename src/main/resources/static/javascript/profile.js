@@ -33,7 +33,9 @@ async function fetchAndDisplayAddedMovies(userId) {
                     <img alt="movie cover" src=${movie.image} class="movie-cover"/>
                 </a>
                 <p class="movie-title">${movie.title}</p>
-                <button class="delete-button">Delete</button>
+                <button class="delete-button" onclick="deleteMovieCard(${movie.id})">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
                 `;
 
                 const deleteButton = movieCard.querySelector('.delete-button');

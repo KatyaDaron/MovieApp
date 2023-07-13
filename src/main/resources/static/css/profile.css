@@ -44,8 +44,11 @@ body {
     margin-top: 20px;
 }
 
+h3 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
 .movie-card {
-    background-color: blanchedalmond;
     width: 200px;
     margin: 20px;
     display: flex;
@@ -59,26 +62,31 @@ body {
 .movie-cover {
     width: 200px;
     height: 300px;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.movie-cover:hover {
+    transform: scale(0.9);
 }
 
 .movie-title {
     font-size: 18px;
     margin: 5px 0;
-    color: black;
+    color: bleachalmond;
 }
 
 .delete-button {
-    background-color: #232323;
-    width: 75px;
-    height: 25px;
-    color: blanchedalmond;
+    background: none;
     border: none;
+    padding: 0;
     margin: 5px;
+    font-size: 15px;
+    color: blanchedalmond;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .delete-button:hover {
-    background-color: #444;
-    cursor: pointer;
+    color: red;
 }
