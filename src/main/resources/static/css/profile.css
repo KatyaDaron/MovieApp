@@ -1,19 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+    background-color: #232323;
 }
 
 .nav {
-  background-color: #333;
-  color: blanchedalmond;
-  padding: 10px;
-  display: flex;
-  align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #333;
+    color: blanchedalmond;
+    padding: 10px;
+    height: 60px;
 }
 
 .nav a {
-  color: blanchedalmond;
-  text-decoration: none;
-  margin: 0 10px;
+    color: blanchedalmond;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: blanchedalmond;
+}
+
+#added-movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.greeting {
+    margin-top: 20px;
+}
+
+.movie-card {
+    background-color: blanchedalmond;
+    width: 200px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.movie-cover {
+    width: 200px;
+    height: 300px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.movie-title {
+    font-size: 18px;
+    margin: 5px 0;
+    color: black;
+}
+
+.delete-button {
+    background-color: #232323;
+    width: 75px;
+    height: 25px;
+    color: blanchedalmond;
+    border: none;
+    margin: 5px;
+}
+
+.delete-button:hover {
+    background-color: #444;
+    cursor: pointer;
 }
