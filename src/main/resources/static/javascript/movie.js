@@ -23,7 +23,7 @@ async function getMovieDetails(movieId) {
 
     // Displaying the movie details using the retrieved data
     document.getElementById("movie-title").textContent = data.title;
-    document.getElementById("movie-duration").textContent = data.duration + " minutes";
+    document.getElementById("movie-duration").textContent = data.duration;
     document.getElementById("movie-director").textContent = data.director;
     document.getElementById("movie-genre").textContent = data.genre;
     document.getElementById("movie-maturity-rating").textContent = data.maturityRating;
@@ -182,6 +182,15 @@ async function editFeedback(feedback) {
     const top = window.innerHeight / 2 - height / 2;
     const popupWindow = window.open("", "Edit Feedback", `width=${width}, height=${height}, top=${top}, left=${left}`);
 
+    // Link element for the CSS file
+    const cssLink = popupWindow.document.createElement("link");
+    cssLink.rel = "stylesheet";
+    cssLink.href = "../css/popup.css";
+
+    // Appending the link element to the popup window's head
+    popupWindow.document.head.appendChild(cssLink);
+    const popupContainer = popupWindow.document.createElement("div");
+    popupContainer.classList.add("popup-container");
 
     // Creating HTML elements for the form in the popup window
     const form = document.createElement("form");
@@ -195,6 +204,7 @@ async function editFeedback(feedback) {
     ratingLabel.innerText = "Rate the movie: ";
     commentLabel.innerText = "Add a comment: ";
     submitButton.type = "submit";
+    submitButton.classList.add("popup-submit-button");
     submitButton.innerText = "Update";
 
     // Populating the rating select dropdown with options
@@ -220,8 +230,11 @@ async function editFeedback(feedback) {
     form.appendChild(document.createElement("br"));
     form.appendChild(submitButton);
 
-    // Appending the form to the popup window
-    popupWindow.document.body.appendChild(form);
+    // Appending the form to the popup container
+    popupContainer.appendChild(form);
+
+    // Append the container to the popup window document
+    popupWindow.document.body.appendChild(popupContainer);
 
     // Adding a submit event listener to the form
     form.addEventListener("submit", async (event) => {
@@ -230,7 +243,6 @@ async function editFeedback(feedback) {
         // Retrieving the updated values from the form fields
         const updatedRating = ratingSelect.value;
         const updatedComment = commentInput.value;
-
         popupWindow.close();
 
         let bodyObj = {
@@ -246,8 +258,6 @@ async function editFeedback(feedback) {
             });
 
             if (response.ok) {
-                alert("Your feedback has been updated!");
-
                 getAllFeedbacks(movieId);
             } else {
                 console.error("Error updating feedback:", response.status);
