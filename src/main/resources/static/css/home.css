@@ -12,16 +12,30 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: #333;
+    background-color: #444;
     color: blanchedalmond;
     padding: 10px;
     height: 60px;
- }
+}
 
 .nav a {
     color: blanchedalmond;
     text-decoration: none;
-    margin: 0 10px;
+    margin: 0 20px;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out;
+}
+
+.nav a:hover {
+    color: #0D0D0D;
+}
+
+.logo {
+    margin-right: 20px;
+    margin-left: 40px;
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
 }
 
 #search {
@@ -74,6 +88,13 @@ button {
     color: blanchedalmond;
     border: none;
     margin: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+button:active {
+    transform: scale(0.95); /* Scale the button down slightly when active/clicked */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add a box-shadow when active/clicked */
 }
 
 input[type='text'] {
@@ -83,17 +104,6 @@ input[type='text'] {
     border-bottom: 2px solid #232323;
     color: #232323;
     background-color: blanchedalmond;
-}
-
-#ratings-container {
-    width: 85%;
-}
-
-#radio-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
 }
 
 #movies-container {
@@ -106,39 +116,25 @@ input[type='text'] {
 .movie-cover {
     width: 200px;
     height: 300px;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.movie-cover:hover {
+    transform: scale(0.9);
 }
 
 .movie-card {
-    background-color: blanchedalmond;
+    color: blanchedalmond;
     width: 200px;
     margin: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 12px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
 }
 
 .movie-title {
     font-size: 18px;
     margin: 5px 0;
-}
-
-.movie-rating {
-    font-size: 15px;
-    margin: 5px 0;
-}
-
-.btns-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    margin: 5px;
-}
-
-.btns-container > button {
-    width: 20px;
 }

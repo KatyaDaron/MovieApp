@@ -55,7 +55,7 @@ function addToWatchlist() {
         addMovieBtn.innerHTML = "Add to Watchlist";
         addMovieBtn.disabled = false;
         addMovieBtn.style.backgroundColor = "blanchedalmond";
-    }, 2000);
+    }, 1000);
 }
 
 async function addFeedback(movieId) {
