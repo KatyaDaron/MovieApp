@@ -23,7 +23,7 @@ async function getMovieDetails(movieId) {
 
     // Displaying the movie details using the retrieved data
     document.getElementById("movie-title").textContent = data.title;
-    document.getElementById("movie-duration").textContent = data.duration;
+    document.getElementById("movie-duration").textContent = `${data.duration} minutes`;
     document.getElementById("movie-director").textContent = data.director;
     document.getElementById("movie-genre").textContent = data.genre;
     document.getElementById("movie-maturity-rating").textContent = data.maturityRating;
@@ -136,7 +136,7 @@ async function getAllFeedbacks(movieId) {
             const averageRating = calculateAverageRating(ratings);
 
             // Displaying average rating
-            const displayedRating = (averageRating % 1 === 0) ? averageRating.toString() : averageRating.toFixed(1);
+            const displayedRating = averageRating === 0 ? "Be the first to rate this movie!" : (averageRating === 10 ? "10" : averageRating.toFixed(1));
             document.getElementById("movie-average-rating").textContent = displayedRating;
         } else {
             console.error("Error fetching feedbacks:", response.status);

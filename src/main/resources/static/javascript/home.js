@@ -84,7 +84,7 @@ async function createMovieCard(movieArr) {
             if (averageRating === 0) {
                 ratingElement.style.display = 'none';
             } else {
-                const displayedRating = Number.isInteger(averageRating) ? averageRating.toString() : averageRating.toFixed(1);
+                const displayedRating = averageRating === 10 ? '10' : averageRating.toFixed(1);
 //                ratingElement.innerHTML = `<span>&#9733; ${displayedRating}</span>`;
                 ratingElement.innerHTML = `<span>${displayedRating}</span>`;
             }

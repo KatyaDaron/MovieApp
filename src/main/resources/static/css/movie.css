@@ -63,7 +63,7 @@ body {
 }
 
 .movie-info p {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .movie-info strong {
@@ -72,6 +72,16 @@ body {
 
 .movie-info span {
     margin-left: 5px;
+}
+
+#movie-average-rating {
+  font-size: 20px;
+  margin: 5px;
+  display: inline-block;
+  background-color: lightgreen;
+  color: black;
+  padding: 5px;
+  border-radius: 4px;
 }
 
 .movie-cover {
