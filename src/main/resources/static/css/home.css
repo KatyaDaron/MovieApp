@@ -134,7 +134,23 @@ input[type='text'] {
     border-radius: 12px;
 }
 
+.movie-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .movie-title {
     font-size: 18px;
-    margin: 5px 0;
+    margin: 5px;
+}
+
+.movie-average-rating {
+  font-size: 15px;
+  margin: 5px;
+  display: inline-block;
+  background-color: lightgreen;
+  color: black;
+  padding: 3px;
+  border-radius: 4px;
 }
