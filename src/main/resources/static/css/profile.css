@@ -92,6 +92,16 @@ h3 {
     color: bleachalmond;
 }
 
+.movie-average-rating {
+    font-size: 15px;
+    margin: 5px;
+    display: inline-block;
+    background-color: lightgreen;
+    color: black;
+    padding: 3px;
+    border-radius: 4px;
+}
+
 .delete-button {
     background: none;
     border: none;

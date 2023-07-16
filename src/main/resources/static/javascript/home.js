@@ -6,7 +6,7 @@ const headers = {
     'Content-Type' : 'application/json'
 }
 
-const baseMoviesURL = "http://localhost:8080/api/movies/"
+const baseMoviesURL = "http://localhost:8080/api/movies";
 const baseFeedbacksURL = "http://localhost:8080/api/feedbacks";
 
 const handleSubmit = async (e) => {
@@ -34,7 +34,7 @@ const handleSubmit = async (e) => {
 }
 
 async function addMovie(obj) {
-    const response = await fetch(`${baseMoviesURL}`, {
+    const response = await fetch(`${baseMoviesURL}/`, {
         method: "POST",
         body: JSON.stringify(obj),
         headers: headers
@@ -46,7 +46,7 @@ async function addMovie(obj) {
 }
 
 async function getAllMovies() {
-    await fetch(`${baseMoviesURL}`, {
+    await fetch(`${baseMoviesURL}/`, {
         method: "GET",
         headers: headers
     })
@@ -121,17 +121,17 @@ async function getAverageRating(movieId) {
 }
 
 function calculateAverageRating(ratings) {
-  if (ratings.length === 0) {
-    return 0;
-  }
+    if (ratings.length === 0) {
+        return 0;
+    }
 
-  const sum = ratings.reduce((total, rating) => total + rating, 0);
-  const average = sum / ratings.length;
-  return average;
+    const sum = ratings.reduce((total, rating) => total + rating, 0);
+    const average = sum / ratings.length;
+    return average;
 }
 
 async function movieSearch(query) {
-    await fetch(`${baseMoviesURL}search?query=${query}`, {
+    await fetch(`${baseMoviesURL}/search?query=${query}`, {
         method: "GET",
         headers: headers
     })
