@@ -1,6 +1,6 @@
 # MovieApp :video_camera:
 
-MovieApp is a web application that helps users to keep track of their favorite movies and discover new ones.
+MovieApp is a versatile and fully-featured Spring Boot application with a user-friendly interface, enabling you to seamlessly manage your movie interests, discover new favorites and keep track of reviews and ratings.
 
 ## Project Demo
 [![MovieApp Demo](movieApp.png)](https://www.loom.com/share/43e67f9dd08e4fe384a548ff9822a6ec?sid=f3906b7b-fece-4ceb-a23c-13679fec3fde)
