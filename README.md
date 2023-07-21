@@ -1,4 +1,4 @@
-# MovieApp :camera:
+# MovieApp :video_camera:
 
 MovieApp is a web application that helps users to keep track of their favorite movies and discover new ones.
 
