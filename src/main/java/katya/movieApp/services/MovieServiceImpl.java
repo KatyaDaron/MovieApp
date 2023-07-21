@@ -92,30 +92,7 @@ public class MovieServiceImpl implements MovieService {
                 .collect(Collectors.toList());
     }
 
-    //Calculating the average rating for each movie
-//    @Override
-//    public List<MovieDto> getMoviesWithAverageRating() {
-//        List<Movie> movies = movieRepository.findAll();
-//        List<MovieDto> movieDtos = new ArrayList<>();
-//
-//        for (Movie movie : movies) {
-//            List<Rating> ratings = ratingRepository.findByMovieId(movie.getId());
-//
-//            BigDecimal sum = BigDecimal.ZERO;
-//            for (Rating rating : ratings) {
-//                sum = sum.add(rating.getRatingValue());
-//            }
-//
-//            BigDecimal averageRating = ratings.isEmpty()
-//                    ? BigDecimal.ZERO
-//                    : sum.divide(BigDecimal.valueOf(ratings.size()), 1, RoundingMode.HALF_UP);
-//
-//            MovieDto movieDto = new MovieDto(movie.getId(), movie.getTitle(), movie.getImage(), averageRating);
-//            movieDtos.add(movieDto);
-//        }
-//        return movieDtos;
-//    }
-
+    //Getting movies by user id
     @Override
     public List<MovieDto> getAddedMoviesByUser(Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);

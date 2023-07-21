@@ -47,9 +47,4 @@ public class MovieController {
     public List<MovieDto> getAddedMoviesByUser(@PathVariable Long userId) {
         return movieService.getAddedMoviesByUser(userId);
     }
-
-//    @GetMapping("/average-rating")
-//    public List<MovieDto> getMoviesWithAverageRating() {
-//        return movieService.getMoviesWithAverageRating();
-//    }
 }

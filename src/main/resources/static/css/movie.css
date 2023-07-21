@@ -75,13 +75,13 @@ body {
 }
 
 #movie-average-rating {
-  font-size: 20px;
-  margin: 5px;
-  display: inline-block;
-  background-color: lightgreen;
-  color: black;
-  padding: 5px;
-  border-radius: 4px;
+    font-size: 20px;
+    margin: 5px;
+    display: inline-block;
+    background-color: lightgreen;
+    color: black;
+    padding: 5px;
+    border-radius: 4px;
 }
 
 .movie-cover {

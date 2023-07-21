@@ -85,7 +85,6 @@ async function createMovieCard(movieArr) {
                 ratingElement.style.display = 'none';
             } else {
                 const displayedRating = averageRating === 10 ? '10' : averageRating.toFixed(1);
-//                ratingElement.innerHTML = `<span>&#9733; ${displayedRating}</span>`;
                 ratingElement.innerHTML = `<span>${displayedRating}</span>`;
             }
 

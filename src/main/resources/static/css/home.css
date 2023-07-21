@@ -93,8 +93,8 @@ button {
 }
 
 button:active {
-    transform: scale(0.95); /* Scale the button down slightly when active/clicked */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add a box-shadow when active/clicked */
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 input[type='text'] {
@@ -135,9 +135,9 @@ input[type='text'] {
 }
 
 .movie-details {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .movie-title {
@@ -146,11 +146,11 @@ input[type='text'] {
 }
 
 .movie-average-rating {
-  font-size: 15px;
-  margin: 5px;
-  display: inline-block;
-  background-color: lightgreen;
-  color: black;
-  padding: 3px;
-  border-radius: 4px;
+    font-size: 15px;
+    margin: 5px;
+    display: inline-block;
+    background-color: lightgreen;
+    color: black;
+    padding: 3px;
+    border-radius: 4px;
 }

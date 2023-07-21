@@ -32,9 +32,4 @@ public class RatingController {
     public void editFeedback(@PathVariable Long ratingId, @RequestParam Long userId, @RequestBody RatingDto newFeedback) {
         ratingService.editFeedback(ratingId, userId, newFeedback);
     }
-
-//    @PutMapping("/user/rating/edit/{ratingId}")
-//    public void editRating(@PathVariable Long ratingId, @RequestParam Long userId, @RequestParam BigDecimal newRatingValue) {
-//        ratingService.editRating(ratingId, userId, newRatingValue);
-//    }
 }
